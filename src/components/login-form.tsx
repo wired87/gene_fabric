@@ -30,16 +30,22 @@ export function LoginForm({
     async function loginUser(e: React.FormEvent) {
         e.preventDefault();
         setLoading(true);
-        const res = await fetch("/api/auth/login", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(form),
-        });
-        setLoading(false);
-        if (res.ok) {
-            alert("User login successful!");
-        } else {
-            alert("Login failed!");
+        try {
+            const res = await fetch("/api/auth/login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(form),
+            });
+            if (res.ok) {
+                alert("User login successful!");
+            } else {
+                alert("Login failed!");
+            }
+        } catch (error) {
+            console.log(error);
+        }
+        finally {
+            setLoading(false);
         }
         // router.push('/dashboard')
     }
