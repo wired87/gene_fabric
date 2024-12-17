@@ -6,20 +6,42 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useRouter } from "next/navigation"
+import { useState } from "react";
 // import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 
 export function LoginForm({
     className,
     ...props
 }: React.ComponentProps<"div">) {
-
+    interface LoginForm {
+        email: string;
+        password: string;
+    }
+    //  loading state
+    const [loading, setLoading] = useState(false);
+    const [form, setForm] = useState<LoginForm>({
+        email: "",
+        password: "",
+    });
     const router = useRouter()
     function routeToSignup() {
         router.push('/register')
     }
-    function loginUser() {
-
-        router.push('/dashboard')
+    async function loginUser(e: React.FormEvent) {
+        e.preventDefault();
+        setLoading(true);
+        const res = await fetch("/api/auth/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(form),
+        });
+        setLoading(false);
+        if (res.ok) {
+            alert("User login successful!");
+        } else {
+            alert("Login failed!");
+        }
+        // router.push('/dashboard')
     }
     return (
         <div className={cn("flex flex-col gap-6", className)} {...props}>
@@ -40,6 +62,7 @@ export function LoginForm({
                                     type="email"
                                     placeholder="m@example.com"
                                     required
+                                    onChange={(e) => setForm({ ...form, email: e.target.value })}
                                 />
                             </div>
                             <div className="grid gap-2">
@@ -52,9 +75,9 @@ export function LoginForm({
                                         Forgot your password?
                                     </a>
                                 </div>
-                                <Input id="password" type="password" required />
+                                <Input id="password" type="password" required onChange={(e => setForm({ ...form, password: e.target.value }))} />
                             </div>
-                            <Button type="submit" className="w-full">
+                            <Button type="submit" onClick={loginUser} className="w-full">
                                 Login
                             </Button>
                             <div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border">

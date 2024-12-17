@@ -13,6 +13,12 @@ export function SignupForm({
     className,
     ...props
 }: React.ComponentProps<"div">) {
+    interface RegisterForm {
+        name: string;
+        email: string;
+        password: string;
+    }
+
     const [form, setForm] = useState<RegisterForm>({
         name: "",
         email: "",
@@ -20,7 +26,7 @@ export function SignupForm({
     });
     const [loading, setLoading] = useState(false);
 
-    const signupUser = async (e: FormEvent) => {
+    const signupUser = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
         const res = await fetch("/api/auth/register", {
