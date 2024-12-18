@@ -52,7 +52,7 @@ export function LoginForm({
                             <div className="flex flex-col items-center text-center">
                                 <h1 className="text-2xl font-bold">Welcome back</h1>
                                 <p className="text-balance text-muted-foreground">
-                                    Login to your Acme Inc account
+                                    Login to your account
                                 </p>
                             </div>
                             <div className="grid gap-2">
@@ -126,7 +126,7 @@ export function LoginForm({
                         <img
                             src="https://www.twistbioscience.com/sites/default/files/styles/max_1300x1300/public/featured_image/adobestock_78724581-min-min_0.webp"
                             alt="Image"
-                            className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
+                            className="absolute grayscale inset-0 h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
                         />
                     </div>
                 </CardContent>

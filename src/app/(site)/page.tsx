@@ -1,3 +1,5 @@
+"use client";
+
 import { Metadata } from "next";
 import Hero from "@/components/Hero";
 
@@ -13,21 +15,21 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
-      <Hero  explanationOrComponent={"Wir unterstützen Unternehmen dabei, neue Ziele zu erreichen, " +
+      <Hero explanationOrComponent={"Wir unterstützen Unternehmen dabei, neue Ziele zu erreichen, " +
         "indem wir modernste Software, maßgeschneiderte Lösungen und KI-basierte Anwendungen entwickeln " +
         "und integrieren. Unser erfahrenes Team steht Ihnen dabei mit professioneller Beratung und Umsetzung zur Seite."}
-             imageOrSection={
-               <Image
-                 src="/images/trust/staff.jpeg"
-                 alt="shape"
-                 width={600}
-                 height={600}
-                 className="object-contain"
-               />
+        imageOrSection={
+          <Image
+            src="/images/trust/staff.jpeg"
+            alt="shape"
+            width={600}
+            height={600}
+            className="object-contain"
+          />
         }
-             mainHeading={"Individuelle Software Entwicklung"}
-             smallHeading={""}
-      noContact={true}
+        mainHeading={"Individuelle Software Entwicklung"}
+        smallHeading={""}
+        noContact={true}
       />
       <HomeMain />
     </>

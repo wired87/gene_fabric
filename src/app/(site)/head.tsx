@@ -23,7 +23,7 @@ export default function Head() {
           <div className="block lg:hidden">
             <button
               onClick={() => setShowNav(!showNav)}
-              className="flex items-center px-3 py-2 border rounded text-white border-white hover:text-white hover:border-white"
+              className="flex items-center px-3 pt-2 border rounded text-white border-white hover:text-white hover:border-white"
             >
               <svg
                 className="fill-current h-6 w-6 text-gray-700"
@@ -41,19 +41,10 @@ export default function Head() {
               } w-full flex-grow lg:flex items-center lg:w-auto`}
           >
             <div className="text-sm flex justify-between lg:flex-grow mt-2 xl:mx-8">
-              <div className="flex justify-center ">
-                <a
-                  href="/"
-                  className="block lg:inline-block text-md font-bold text-gray-500 hover:text-black mx-2 p-1 hover:bg-gray-300 rounded-lg"
-                >
-                  Home
-                </a>
-                <a
-                  href="demo"
-                  className="block lg:inline-block text-md font-bold text-gray-500 hover:text-black mx-2 p-1 hover:bg-gray-300 rounded-lg"
-                >
-                  Demo
-                </a>
+              <div className="flex w-[100px] justify-center ">
+                <Button variant="link" onClick={() => router.push("/")}>Home</Button>
+                <Button variant="link" onClick={() => router.push("/demo")}>Demo</Button>
+
               </div>
               <div>
                 <Button className="mx-2" onClick={toSignup}>
