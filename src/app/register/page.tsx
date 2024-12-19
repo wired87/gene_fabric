@@ -13,7 +13,6 @@ export default function RegisterForm() {
                     <SignupForm />
                 </div>
             </div>
-
         </>
     );
 }
