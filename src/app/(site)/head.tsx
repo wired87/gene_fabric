@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import useAuthStore from "@/store/authStore";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -15,6 +16,15 @@ export default function Head() {
   const toLogin = () => {
     router.push("/login");
   };
+
+  function toLogout() {
+    useAuthStore.getState().logout();
+    router.push("/");
+  }
+
+  // const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
+  const { isLoggedIn } = useAuthStore();
+
 
   return (
     <header>
@@ -46,14 +56,16 @@ export default function Head() {
                 <Button variant="link" onClick={() => router.push("/demo")}>Demo</Button>
 
               </div>
-              <div>
+              {isLoggedIn ? <div><Button variant="outline" onClick={toLogout}>
+                Log out
+              </Button></div> : <div>
                 <Button className="mx-2" onClick={toSignup}>
                   Sign up
                 </Button>
                 <Button variant="outline" onClick={toLogin}>
                   Log in
                 </Button>
-              </div>
+              </div>}
             </div>
           </div>
         </nav>

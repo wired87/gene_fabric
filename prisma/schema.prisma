@@ -26,15 +26,11 @@ model User {
 }
 
 model RefreshToken {
-  id Int @id @default(autoincrement())
-
-  token String @unique
-
-  userId Int
-
-  user User @relation(fields: [userId], references: [id])
-
+  id        Int      @id @default(autoincrement())
+  token     String   @unique
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id])
   createdAt DateTime @default(now())
-
   updatedAt DateTime @updatedAt
+  expiresAt DateTime @default(dbgenerated("(now() + interval '7 days')")) @map("expires_at")
 }
