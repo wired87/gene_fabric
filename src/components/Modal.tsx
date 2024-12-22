@@ -1,7 +1,11 @@
 "use client";
 import React, {useEffect} from "react";
 import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure} from "@nextui-org/react";
+/*
+npm install -g nextui-cli
+nextui add --all -> installs @nextui-org/react
 
+ */
 interface CMOdelT {
   updateState: () => void;
   state: boolean;
