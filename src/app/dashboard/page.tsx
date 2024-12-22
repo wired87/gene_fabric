@@ -1,8 +1,12 @@
+"use client";
+
 import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Head from "../(site)/head";
 
+import useAuthStore from "@/store/authStore";
 const Dashboard = () => {
+    const { isLoggedIn } = useAuthStore();
     return (
         <>
             <Head />
