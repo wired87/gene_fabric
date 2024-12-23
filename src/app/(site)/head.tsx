@@ -54,6 +54,7 @@ export default function Head() {
               <div className="flex w-[100px] justify-center ">
                 <Button variant="link" onClick={() => router.push("/")}>Home</Button>
                 <Button variant="link" onClick={() => router.push("/demo")}>Demo</Button>
+                <Button variant="link" onClick={() => router.push("/dashboard")}>Dashboard</Button>
 
               </div>
               {isLoggedIn ? <div><Button variant="outline" onClick={toLogout}>
