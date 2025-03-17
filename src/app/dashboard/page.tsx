@@ -1,20 +1,25 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
-import Head from "../(site)/head";
+
 import useAuthStore from "@/store/authStore";
 import { Send, User, Bot, Paperclip } from "lucide-react";
+import Head from "../(site)/head";
 
 const Dashboard = () => {
   const { isLoggedIn } = useAuthStore();
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState<{ role: string; content: string }[]>([]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const messagesEndRef = useRef(null);
-  const inputRef = useRef(null);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLTextAreaElement>(null);
 
   // Mock response function to simulate AI response
-  const getMockResponse = async (message) => {
+  interface GetMockResponse {
+    (message: string): Promise<string>;
+  }
+
+  const getMockResponse: GetMockResponse = async (message) => {
     setIsLoading(true);
     // Simulate network delay
     await new Promise((resolve) => setTimeout(resolve, 1000));
@@ -22,7 +27,7 @@ const Dashboard = () => {
     return `This is a mock response to: "${message}"`;
   };
 
-  const handleSendMessage = async (e) => {
+  const handleSendMessage = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!input.trim()) return;
 
@@ -67,7 +72,7 @@ const Dashboard = () => {
       <Head />
       <div className="container mx-auto flex flex-col h-[90vh] max-h-[90-vh] p-6">
         <h1 className="text-2xl font-bold mb-4">Chat</h1>
-        
+
         {/* Messages container */}
         <div className="flex-1 overflow-y-auto bg-gray-50 rounded-lg mb-4 p-4">
           {messages.length === 0 ? (
@@ -120,7 +125,7 @@ const Dashboard = () => {
           )}
           <div ref={messagesEndRef} />
         </div>
-        
+
         {/* Input form */}
         <form onSubmit={handleSendMessage} className="flex items-end gap-2">
           <div className="relative flex-1">

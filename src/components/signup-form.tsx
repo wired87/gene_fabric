@@ -27,7 +27,7 @@ export function SignupForm({
     const signupUser = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
-        const res = await fetch("/api/auth/register", {
+        const res = await fetch(process.env.NEXT_PUBLIC_API_URL + "auth/create/", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(form),
