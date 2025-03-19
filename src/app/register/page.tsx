@@ -4,6 +4,7 @@ import { SignupForm } from "@/components/signup-form";
 import Head from "../(site)/head";
 
 
+
 export default function RegisterForm() {
     return (
         <>

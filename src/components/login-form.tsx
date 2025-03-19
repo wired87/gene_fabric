@@ -39,13 +39,13 @@ export function LoginForm({
             });
             setLoading(false);
 
-            if (true) {
+            if (res.ok) {
                 // TODO: res.ok is a placeholder for actual response handling
-                // const data = await res.json();
+                const data = await res.json();
                 login(); // Update Zustand store
                 // Optionally, store the access token in localStorage or memory
-                // localStorage.setItem("accessToken", data.accessToken);
-                localStorage.setItem("accessToken", "testToken");
+                localStorage.setItem("accessToken", data.accessToken);
+                // localStorage.setItem("accessToken", "testToken");
                 router.push("/dashboard"); // Redirect to dashboard
             } else {
                 alert("Login failed! Please check your credentials.");
